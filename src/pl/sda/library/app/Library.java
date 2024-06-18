@@ -3,7 +3,7 @@ import pl.sda.library.model.Book;
 
 class Library {
     public static void main(String[] args) {
-        final String appName = "Biblioteka v0.5";
+        final String appName = "Biblioteka v0.6";
 
         Book book1 = new Book("Zbuntowana","Veronica Roth",2012,367, "Amber", "9788324153497");
         Book book2 = new Book("Niezgodna","Veronica Roth",2011,350, "Amber", "9788324153718");
