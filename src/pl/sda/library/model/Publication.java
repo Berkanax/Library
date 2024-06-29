@@ -37,7 +37,7 @@ public class Publication {
         this.publisher = publisher;
     }
     public String toString() {
-        return super.toString() + "Publication [title=" + title + ", publisher=" + publisher + ", year=" + year + "]";
+        return  title + "; " + publisher + "; " + year;
     }
 
     @Override
@@ -46,7 +46,9 @@ public class Publication {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Publication that = (Publication) o;
-        return year == that.year && Objects.equals(title, that.title) && Objects.equals(publisher, that.publisher);
+        return year == that.year &&
+                Objects.equals(title, that.title) &&
+                Objects.equals(publisher, that.publisher);
     }
 
     @Override

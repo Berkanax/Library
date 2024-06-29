@@ -43,7 +43,7 @@ public class LibraryControl {
     }
 
     private void printMagazines() {
-        library.printMagazin();
+        library.printMagazines();
     }
 
     private void addMagazine() {
