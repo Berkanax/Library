@@ -1,5 +1,7 @@
 package pl.sda.library.model;
 
+import java.util.Objects;
+
 public class Publication {
     private String title;
     private String publisher;
@@ -34,7 +36,21 @@ public class Publication {
     public void setPublisher(String publisher) {
         this.publisher = publisher;
     }
-    public void printInfo(){
+    public String toString() {
+        return super.toString() + "Publication [title=" + title + ", publisher=" + publisher + ", year=" + year + "]";
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Publication that = (Publication) o;
+        return year == that.year && Objects.equals(title, that.title) && Objects.equals(publisher, that.publisher);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, publisher, year);
     }
 }
