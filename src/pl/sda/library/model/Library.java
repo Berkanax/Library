@@ -1,17 +1,14 @@
 package pl.sda.library.model;
 
 public class Library {
-    private static final int MAX_BOOKS = 1000;
-    private static final int MAX_MAGAZINE = 1000;
-    private Book[] books = new Book[MAX_BOOKS];
-    private Magazine[] magazines = new Magazine[MAX_MAGAZINE];
-    private int booksNumber = 0;
-    private int magazinesNumber = 0;
+    private static final int MAX_PUBLICATIONS = 2000;
+    private int publicationsNumber = 0;
+    private Publication[] publications = new Publication[MAX_PUBLICATIONS];
 
     public void addBook(Book book){
-        if(booksNumber < MAX_BOOKS){
-            books[booksNumber] = book;
-            booksNumber++;
+        if(publicationsNumber < MAX_PUBLICATIONS){
+            publications[publicationsNumber] = book;
+            publicationsNumber++;
         }else {
             System.out.println("Brak miejsca w bibliotece");
         }
@@ -19,29 +16,37 @@ public class Library {
     }
 
     public void printBooks(){
-        if(booksNumber == 0){
-            System.out.println("Brak książek");
+        int countBooks = 0;
+        for (int i = 0; i < publicationsNumber; i++) {
+            if(publications[i] instanceof Book)
+            publications[i].printInfo();
+            countBooks++;
         }
-        for (int i = 0; i < booksNumber; i++) {
-            books[i].printInfo();
+        if(countBooks == 0){
+            System.out.println("Brak książek");
         }
     }
 
     public void addMagazine(Magazine magazine){
-        if(booksNumber < MAX_MAGAZINE){
-            magazines[magazinesNumber] = magazine;
-            magazinesNumber++;
+        if(publicationsNumber < MAX_PUBLICATIONS){
+            publications[publicationsNumber] = magazine;
+            publicationsNumber++;
         }else {
             System.out.println("Brak miejsca w bibliotece");
         }
 
     }
     public void printMagazin(){
-        if(magazinesNumber == 0){
-            System.out.println("Brak Czasopism");
+        int countMagazins = 0;
+        for (int i = 0; i < publicationsNumber; i++) {
+            if (publications[i] instanceof Magazine) {
+                publications[i].printInfo();
+                countMagazins++;
+            }
         }
-        for (int i = 0; i < magazinesNumber; i++) {
-            magazines[i].printInfo();
+        if(countMagazins == 0){
+            System.out.println("Brak Czasopism");
+
         }
     }
 
