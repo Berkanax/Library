@@ -15,13 +15,13 @@
         </div>
     </div>
     <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Szukaj..." value="{{query}}">
-        <select id="searchCategory">
+        <input type="text" placeholder="{{query}}">
+        <select>
             <option value="books">Książki</option>
             <option value="magazines">Magazyny</option>
             <option value="readers">Czytelnicy</option>
         </select>
-        <button onclick="search()">Szukaj</button>
+        <button>Szukaj</button>
     </div>
     <div class="user-menu">
         <button onclick="window.location.href='index.html'">Strona Główna</button>
@@ -30,12 +30,18 @@
     </div>
 </header>
 <div class="container">
-    <div class="results">
-        {{#each results}}
-        <div class="result-item">
-            <a href="{{url}}">{{title}}</a>
+    <div class="content">
+        <div class="results">
+            <h3>Wyniki wyszukiwania dla: "{{query}}"</h3>
+            {{#each results}}
+            <div class="result-item">
+                <a href="/{{type}}/{{identifier}}">
+                    <img src="../static/images/{{type}}.png" alt="{{title}}">
+                    <p>{{title}}</p>
+                </a>
+            </div>
+            {{/each}}
         </div>
-        {{/each}}
     </div>
 </div>
 <footer class="footer">
@@ -47,12 +53,6 @@
         const today = new Date().getDate() - 1;
         document.getElementById('quote-of-the-day').innerText = quotes[today];
     });
-
-    function search() {
-        const query = document.getElementById('searchInput').value;
-        const category = document.getElementById('searchCategory').value;
-        window.location.href = `/search-result.html?query=${query}&category=${category}`;
-    }
 </script>
 </body>
 </html>

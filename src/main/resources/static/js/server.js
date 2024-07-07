@@ -1,97 +1,40 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
 const app = express();
+const port = 3000;
 
-app.use(express.json());
-app.use(express.static('src/resources/static'));
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'static')));
+app.set('view engine', 'hbs');
 
-const dataFilePath = path.join(__dirname, '..', 'data.json');
-
-// Load initial data
+// Wczytaj dane
+const dataFilePath = path.join(__dirname, 'data.json');
 let data = JSON.parse(fs.readFileSync(dataFilePath, 'utf8'));
 
-app.post('/saveBookPage', (req, res) => {
-    const { fileName, content } = req.body;
-    const filePath = path.join(__dirname, '..', 'books', fileName);
+// Zapisz dane
+function saveData() {
+    fs.writeFileSync(dataFilePath, JSON.stringify(data, null, 2));
+}
 
-    fs.writeFile(filePath, content, (err) => {
-        if (err) {
-            console.error(err);
-            res.status(500).send('Error saving file');
-        } else {
-            data.books.push({ ...req.body, url: `books/${fileName}` });
-            fs.writeFileSync(dataFilePath, JSON.stringify(data, null, 2));
-            res.status(200).send('File saved');
-        }
-    });
+// Wyświetl stronę główną
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'templates', 'index.html'));
 });
 
-app.post('/saveMagazinePage', (req, res) => {
-    const { fileName, content } = req.body;
-    const filePath = path.join(__dirname, '..', 'magazines', fileName);
-
-    fs.writeFile(filePath, content, (err) => {
-        if (err) {
-            console.error(err);
-            res.status(500).send('Error saving file');
-        } else {
-            data.magazines.push({ ...req.body, url: `magazines/${fileName}` });
-            fs.writeFileSync(dataFilePath, JSON.stringify(data, null, 2));
-            res.status(200).send('File saved');
-        }
-    });
+// Wyświetl stronę welcome
+app.get('/welcome', (req, res) => {
+    res.sendFile(path.join(__dirname, 'templates', 'welcome.html'));
 });
 
-app.post('/saveReaderPage', (req, res) => {
-    const { fileName, content } = req.body;
-    const filePath = path.join(__dirname, '..', 'readers', fileName);
-
-    fs.writeFile(filePath, content, (err) => {
-        if (err) {
-            console.error(err);
-            res.status(500).send('Error saving file');
-        } else {
-            data.readers.push({ ...req.body, url: `readers/${fileName}` });
-            fs.writeFileSync(dataFilePath, JSON.stringify(data, null, 2));
-            res.status(200).send('File saved');
-        }
-    });
+// Wyświetl stronę usuwania
+app.get('/delete', (req, res) => {
+    res.sendFile(path.join(__dirname, 'templates', 'delete.html'));
 });
 
-app.post('/deleteBook', (req, res) => {
-    const { isbn } = req.body;
-    const filePath = path.join(__dirname, '..', 'books', `${isbn}.html`);
-
-    fs.unlink(filePath, (err) => {
-        if (err) {
-            console.error(err);
-            res.status(500).send('Error deleting file');
-        } else {
-            data.books = data.books.filter(book => book.isbn !== isbn);
-            fs.writeFileSync(dataFilePath, JSON.stringify(data, null, 2));
-            res.status(200).send('File deleted');
-        }
-    });
-});
-
-app.post('/deleteMagazine', (req, res) => {
-    const { title } = req.body;
-    const filePath = path.join(__dirname, '..', 'magazines', `${title}.html`);
-
-    fs.unlink(filePath, (err) => {
-        if (err) {
-            console.error(err);
-            res.status(500).send('Error deleting file');
-        } else {
-            data.magazines = data.magazines.filter(magazine => magazine.title !== title);
-            fs.writeFileSync(dataFilePath, JSON.stringify(data, null, 2));
-            res.status(200).send('File deleted');
-        }
-    });
-});
-
-app.get('/search', (req, res) => {
+// Wyszukaj wyniki
+app.get('/search-result.html', (req, res) => {
     const query = req.query.query.toLowerCase();
     const category = req.query.category;
     let results = [];
@@ -101,17 +44,80 @@ app.get('/search', (req, res) => {
     } else if (category === 'magazines') {
         results = data.magazines.filter(magazine => magazine.title.toLowerCase().includes(query));
     } else if (category === 'readers') {
-        results = data.readers.filter(reader => reader.name.toLowerCase().includes(query) || reader.surname.toLowerCase().includes(query));
+        results = data.readers.filter(reader => reader.firstName.toLowerCase().includes(query) || reader.lastName.toLowerCase().includes(query));
     }
 
+    res.render('search-result', { query, results });
+});
+
+// Dodaj książkę
+app.post('/addBook', (req, res) => {
+    const { title, author, publisher, isbn, year, pages } = req.body;
+    data.books.push({ title, author, publisher, isbn, year, pages });
+    saveData();
+    res.redirect('/welcome');
+});
+
+// Dodaj magazyn
+app.post('/addMagazine', (req, res) => {
+    const { title, publisher, language, date } = req.body;
+    data.magazines.push({ title, publisher, language, date });
+    saveData();
+    res.redirect('/welcome');
+});
+
+// Dodaj czytelnika
+app.post('/addReader', (req, res) => {
+    const { firstName, lastName, pesel } = req.body;
+    data.readers.push({ firstName, lastName, pesel });
+    saveData();
+    res.redirect('/welcome');
+});
+
+// Usuń książkę
+app.post('/deleteBook', (req, res) => {
+    const { isbn } = req.body;
+    data.books = data.books.filter(book => book.isbn !== isbn);
+    saveData();
+    res.sendStatus(200);
+});
+
+// Usuń magazyn
+app.post('/deleteMagazine', (req, res) => {
+    const { title } = req.body;
+    data.magazines = data.magazines.filter(magazine => magazine.title !== title);
+    saveData();
+    res.sendStatus(200);
+});
+
+// Szukaj czytelnika
+app.get('/searchReader', (req, res) => {
+    const query = req.query.pesel;
+    const results = data.readers.filter(reader => reader.pesel.startsWith(query));
     res.json({ results });
 });
 
-app.listen(3000, () => {
-    console.log('Server running on port 3000');
+// Wyświetl szablon książki
+app.get('/book/:isbn', (req, res) => {
+    const book = data.books.find(book => book.isbn === req.params.isbn);
+    if (book) {
+        res.render('book-template', book);
+    } else {
+        res.sendStatus(404);
+    }
 });
-app.get('/searchReader', (req, res) => {
-    const pesel = req.query.pesel.toLowerCase();
-    const results = data.readers.filter(reader => reader.pesel.startsWith(pesel));
-    res.json({ results });
+
+// Wyświetl szablon magazynu
+app.get('/magazine/:title', (req, res) => {
+    const magazine = data.magazines.find(magazine => magazine.title === req.params.title);
+    if (magazine) {
+        res.render('magazine-template', magazine);
+    } else {
+        res.sendStatus(404);
+    }
+});
+
+// Uruchom serwer
+app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
 });

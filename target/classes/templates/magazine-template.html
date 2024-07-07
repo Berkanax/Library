@@ -51,13 +51,13 @@
                         <input type="date" id="returnDate" name="returnDate" placeholder="Data zwrotu" required>
                     </div>
                     <div>
-                        <input type="text" id="peselSearch" name="peselSearch" placeholder="PESEL czytelnika" required oninput="searchReader(this.value)">
+                        <input type="text" id="peselSearch" name="peselSearch" placeholder="PESEL czytelnika" oninput="searchReader(this.value)" required>
+                        <div id="readerSuggestions" class="suggestions"></div>
                     </div>
-                    <div id="readerSuggestions"></div>
                     <button type="submit" class="add-note-button">Dodaj adnotację</button>
                 </form>
-                <div id="comments">
-                    <!-- Komentarze będą tutaj -->
+                <div id="comments" class="comments-section">
+                    <!-- Sekcja na komentarze -->
                 </div>
             </div>
         </div>
