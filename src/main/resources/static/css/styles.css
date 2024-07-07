@@ -1,0 +1,166 @@
+body {
+    font-family: Arial, sans-serif; /* Ustawia czcionkę dla całej strony */
+    background-color: #FFFFFF; /* Ustawia kolor tła dla całej strony na biały */
+    color: #C94F04; /* Ustawia kolor tekstu na pomarańczowy */
+    margin: 0; /* Usuwa domyślne marginesy */
+    padding: 0; /* Usuwa domyślne odstępy wewnętrzne */
+    height: 100vh; /* Ustawia wysokość strony na 100% wysokości okna */
+    overflow: hidden; /* Zablokowuje przewijanie strony w pionie */
+    display: flex; /* Ustawia flexbox dla ciała strony */
+    flex-direction: column; /* Ustawia kierunek flexboxa na kolumnowy */
+    justify-content: center; /* Wyrównuje zawartość pionowo na środku */
+    align-items: center; /* Wyrównuje zawartość poziomo na środku */
+    position: relative; /* Ustawia pozycjonowanie względne dla elementów absolutnie pozycjonowanych wewnątrz */
+}
+
+.container {
+    width: 80%; /* Ustawia szerokość kontenera na 80% szerokości rodzica */
+    max-width: 500px; /* Ustawia maksymalną szerokość kontenera */
+    padding: 20px; /* Dodaje wewnętrzne odstępy (padding) do kontenera */
+    text-align: center; /* Wyrównuje tekst do środka */
+    background-color: rgba(255, 255, 255, 0.5); /* Ustawia kolor tła kontenera na biały z przezroczystością 50% */
+    border: 1px solid #FF914D; /* Ustawia obramowanie kontenera */
+    border-radius: 20px; /* Ustawia zaokrąglone krawędzie kontenera */
+    min-height: 500px; /* Ustawia minimalną wysokość kontenera */
+    display: flex; /* Ustawia flexbox dla kontenera */
+    flex-direction: column; /* Ustawia kierunek flexboxa na kolumnowy */
+    justify-content: flex-start; /* Wyrównuje zawartość do góry */
+    align-items: center; /* Wyrównuje zawartość poziomo na środku */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Dodaje cień do kontenera */
+    z-index: 1; /* Ustawia kontener na wierzchu w stosie z-index */
+}
+
+.header {
+    display: flex; /* Ustawia flexbox dla nagłówka */
+    align-items: center; /* Wyrównuje zawartość pionowo na środku */
+    margin-bottom: 20px; /* Dodaje odstęp poniżej nagłówka */
+}
+
+.header img {
+    width: 100px; /* Ustawia szerokość logo */
+    height: auto; /* Zachowuje proporcje logo */
+    margin-right: 20px; /* Dodaje odstęp po prawej stronie logo */
+}
+
+.header .title {
+    text-align: left; /* Wyrównuje tekst do lewej */
+}
+
+.header .title h2 {
+    margin: 0; /* Usuwa marginesy wokół nagłówka */
+    font-size: 24px; /* Ustawia rozmiar czcionki dla nagłówka */
+}
+
+.header .title p {
+    margin: 0; /* Usuwa marginesy wokół paragrafu */
+    font-size: 14px; /* Ustawia rozmiar czcionki dla paragrafu */
+}
+
+.quote {
+    font-size: 16px; /* Ustawia rozmiar czcionki cytatu */
+    font-style: italic; /* Ustawia styl czcionki na kursywę */
+    margin-bottom: 20px; /* Dodaje odstęp poniżej cytatu */
+}
+
+form {
+    margin-top: 20px; /* Dodaje odstęp powyżej formularza */
+    display: none; /* Ukrywa formularze na początku */
+    width: 100%; /* Zapewnia, że formularze będą miały szerokość kontenera */
+}
+
+form.active {
+    display: block; /* Pokazuje aktywny formularz */
+}
+
+form div {
+    margin-bottom: 10px; /* Dodaje odstęp poniżej każdego div'a w formularzu */
+}
+
+form input {
+    width: 100%; /* Ustawia szerokość input na 100% szerokości rodzica */
+    padding: 10px; /* Dodaje wewnętrzne odstępy (padding) input */
+    box-sizing: border-box; /* Uwzględnia padding i border w szerokości i wysokości */
+    border: 1px solid #ccc; /* Dodaje obramowanie input */
+    border-radius: 5px; /* Dodaje zaokrąglone krawędzie do input */
+    font-size: 16px; /* Ustawia rozmiar czcionki input */
+}
+
+form input:focus {
+    border-color: #FF914D; /* Zmienia kolor obramowania input po kliknięciu */
+    outline: none; /* Usuwa domyślny efekt focus */
+    box-shadow: 0 0 5px rgba(255, 145, 77, 0.5); /* Dodaje cień do input po kliknięciu */
+}
+
+button {
+    padding: 10px 20px; /* Dodaje wewnętrzne odstępy (padding) przycisku */
+    background-color: #FF914D; /* Ustawia kolor tła przycisku */
+    color: #FFF; /* Ustawia kolor tekstu przycisku na biały */
+    border: none; /* Usuwa obramowanie przycisku */
+    border-radius: 5px; /* Dodaje zaokrąglone krawędzie do przycisku */
+    cursor: pointer; /* Ustawia wskaźnik kursora na rękę przy najechaniu */
+    font-size: 16px; /* Ustawia rozmiar czcionki przycisku */
+    transition: background-color 0.3s, transform 0.3s; /* Dodaje przejścia dla zmiany koloru tła i transformacji */
+}
+
+button:hover {
+    background-color: #C94F04; /* Zmienia kolor tła przycisku po najechaniu */
+    transform: translateY(-2px); /* Dodaje efekt podniesienia przycisku po najechaniu */
+}
+
+a {
+    color: #C94F04; /* Ustawia kolor linku na pomarańczowy */
+    text-decoration: none; /* Usuwa podkreślenie linku */
+    font-size: 18px; /* Ustawia rozmiar czcionki linku */
+}
+
+a:hover {
+    text-decoration: underline; /* Dodaje podkreślenie linku po najechaniu */
+}
+
+.switch-container {
+    margin: 20px 0; /* Dodaje odstęp powyżej i poniżej switch-container */
+    display: flex; /* Ustawia flexbox dla switch-container */
+    justify-content: center; /* Wyrównuje zawartość poziomo na środku */
+}
+
+.switch-container button {
+    padding: 10px 20px; /* Dodaje wewnętrzne odstępy (padding) przycisków */
+    border: none; /* Usuwa obramowanie przycisków */
+    cursor: pointer; /* Ustawia wskaźnik kursora na rękę przy najechaniu */
+    transition: background-color 0.3s; /* Dodaje przejście dla zmiany koloru tła */
+    display: flex; /* Ustawia flexbox dla przycisków */
+    align-items: center; /* Wyrównuje zawartość pionowo na środku */
+    font-size: 16px; /* Ustawia rozmiar czcionki przycisków */
+}
+
+.switch-container button:first-child {
+    border-radius: 5px 0 0 5px; /* Dodaje zaokrąglone krawędzie do lewego przycisku */
+}
+
+.switch-container button:last-child {
+    border-radius: 0 5px 5px 0; /* Dodaje zaokrąglone krawędzie do prawego przycisku */
+}
+
+.switch-container button.active {
+    background-color: #FF914D; /* Ustawia kolor tła dla aktywnego przycisku */
+    color: #FFF; /* Ustawia kolor tekstu dla aktywnego przycisku na biały */
+}
+
+.switch-container button.inactive {
+    background-color: #FFBD59; /* Ustawia kolor tła dla nieaktywnego przycisku */
+    color: #C94F04; /* Ustawia kolor tekstu dla nieaktywnego przycisku na jasny pomarańczowy */
+}
+
+.switch-container button:not(:last-child) {
+    border-right: 1px solid #FF914D; /* Dodaje separator między przyciskami */
+}
+
+.image-background {
+    position: absolute; /* Ustawia pozycjonowanie absolutne */
+    top: 50%; /* Ustawia obraz na środku w pionie */
+    left: 50%; /* Ustawia obraz na środku w poziomie */
+    transform: translate(-50%, -50%); /* Przesuwa obraz o 50% w górę i w lewo */
+    z-index: 0; /* Ustawia obraz na spód w stosie z-index */
+    width: auto; /* Ustawia automatyczną szerokość obrazu */
+    height: auto; /* Ustawia automatyczną wysokość obrazu */
+}

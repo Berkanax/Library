@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Usuń - Biblioteka</title>
+    <link rel="stylesheet" href="../static/css/delete.css"/>
+    <script src="../static/js/sentencje.js" defer></script>
+</head>
+<body>
+<header>
+    <div class="left-section">
+        <img src="../static/images/logo.png" alt="Logo">
+        <div class="user-info">
+            <span>Witaj, User!</span>
+            <div id="quote-of-the-day" class="quote"></div>
+        </div>
+    </div>
+    <div class="search-bar">
+        <input type="text" placeholder="Szukaj...">
+        <button>Szukaj</button>
+    </div>
+    <div class="user-menu">
+        <button onclick="window.location.href='welcome.html'">Strona Główna</button>
+        <button style="background-color: #FF4D4D;" onclick="window.location.href='delete.html'">Usuń z systemu</button>
+        <button onclick="window.location.href='index.html'" style="margin-right: 60px;">Wyloguj</button>
+    </div>
+</header>
+<div class="container">
+    <div class="content">
+        <div class="right-container">
+            <div class="form-container">
+                <h3>Usuń z systemu</h3>
+                <div class="switch-container">
+                    <button id="deleteBookBtn" class="active left-rounded">
+                        <span>Książka</span>
+                    </button>
+                    <button id="deleteMagazineBtn" class="inactive right-rounded">
+                        <span>Magazyn</span>
+                    </button>
+                </div>
+                <form id="deleteBookForm" class="form active" action="/deleteBook" method="post">
+                    <div>
+                        <input type="text" id="bookTitle" name="bookTitle" placeholder="Tytuł Książki" required>
+                    </div>
+                    <div>
+                        <input type="text" id="bookAuthor" name="bookAuthor" placeholder="Autor Książki" required>
+                    </div>
+                    <div>
+                        <input type="text" id="bookPublisher" name="bookPublisher" placeholder="Wydawnictwo" required>
+                    </div>
+                    <div>
+                        <input type="text" id="bookISBN" name="bookISBN" placeholder="ISBN" pattern="\d+" required>
+                    </div>
+                    <div>
+                        <input type="text" id="bookYear" name="bookYear" placeholder="Rok wydania" pattern="\d{4}" required>
+                    </div>
+                    <div>
+                        <input type="text" id="bookPages" name="bookPages" placeholder="Ilość stron" required>
+                    </div>
+                    <button type="submit" style="background-color: #FF4D4D;">Usuń Książkę</button>
+                </form>
+                <form id="deleteMagazineForm" class="form" action="/deleteMagazine" method="post">
+                    <div>
+                        <input type="text" id="magazineTitle" name="magazineTitle" placeholder="Tytuł Magazynu" required>
+                    </div>
+                    <div>
+                        <input type="text" id="magazinePublisher" name="magazinePublisher" placeholder="Wydawnictwo" required>
+                    </div>
+                    <div>
+                        <input type="text" id="magazineLanguage" name="magazineLanguage" placeholder="Język" required>
+                    </div>
+                    <div>
+                        <input type="date" id="magazineDate" name="magazineDate" placeholder="Data Wydania" required>
+                    </div>
+                    <button type="submit" style="background-color: #FF4D4D;">Usuń Magazyn</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <p>Biblioteka v2.7</p>
+    <p class="project-by">Project by Tironi</p>
+</footer>
+<script>
+    document.getElementById('deleteBookBtn').addEventListener('click', function() {
+        document.getElementById('deleteBookForm').classList.add('active');
+        document.getElementById('deleteMagazineForm').classList.remove('active');
+        this.classList.add('active');
+        this.classList.remove('inactive');
+        document.getElementById('deleteMagazineBtn').classList.add('inactive');
+        document.getElementById('deleteMagazineBtn').classList.remove('active');
+    });
+
+    document.getElementById('deleteMagazineBtn').addEventListener('click', function() {
+        document.getElementById('deleteMagazineForm').classList.add('active');
+        document.getElementById('deleteBookForm').classList.remove('active');
+        this.classList.add('active');
+        this.classList.remove('inactive');
+        document.getElementById('deleteBookBtn').classList.add('inactive');
+        document.getElementById('deleteBookBtn').classList.remove('active');
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const today = new Date().getDate() - 1;
+        document.getElementById('quote-of-the-day').innerText = quotes[today];
+    });
+</script>
+</body>
+</html>

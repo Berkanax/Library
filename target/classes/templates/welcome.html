@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome - Biblioteka</title>
+    <link rel="stylesheet" href="../static/css/welcome.css"/>
+    <script src="../static/js/sentencje.js" defer></script>
+</head>
+<body>
+<header>
+    <div class="left-section">
+        <img src="../static/images/logo.png" alt="Logo">
+        <div class="user-info">
+            <span>Witaj, User!</span>
+            <div id="quote-of-the-day" class="quote"></div>
+        </div>
+    </div>
+    <div class="search-bar">
+        <input type="text" placeholder="Szukaj...">
+        <button>Szukaj</button>
+    </div>
+    <div class="user-menu">
+        <button onclick="window.location.href='index.html'">Strona Główna</button>
+        <button style="background-color: #FF4D4D;" onclick="window.location.href='delete.html'">Usuń z systemu</button>
+        <button onclick="window.location.href='index.html'" style="margin-right: 60px;">Wyloguj</button>
+    </div>
+</header>
+<div class="container">
+    <div class="content">
+        <div class="left-container">
+            <h3>Ostatnio dodane Książki:</h3>
+            <div class="item-list">
+                <div class="item">
+                    <img src="../static/images/ksiazka.png" alt="Książka 1">
+                    <p>Książka 1</p>
+                </div>
+                <div class="item">
+                    <img src="../static/images/ksiazka.png" alt="Książka 2">
+                    <p>Książka 2</p>
+                </div>
+                <div class="item">
+                    <img src="../static/images/ksiazka.png" alt="Książka 3">
+                    <p>Książka 3</p>
+                </div>
+                <div class="item">
+                    <img src="../static/images/ksiazka.png" alt="Książka 4">
+                    <p>Książka 4</p>
+                </div>
+            </div>
+            <h3 style="margin-top: 20px;">Ostatnio dodane Magazyny:</h3>
+            <div class="item-list">
+                <div class="item">
+                    <img src="../static/images/magazyn.png" alt="Magazyn 1">
+                    <p>Magazyn 1</p>
+                </div>
+                <div class="item">
+                    <img src="../static/images/magazyn.png" alt="Magazyn 2">
+                    <p>Magazyn 2</p>
+                </div>
+                <div class="item">
+                    <img src="../static/images/magazyn.png" alt="Magazyn 3">
+                    <p>Magazyn 3</p>
+                </div>
+                <div class="item">
+                    <img src="../static/images/magazyn.png" alt="Magazyn 4">
+                    <p>Magazyn 4</p>
+                </div>
+            </div>
+        </div>
+        <div class="right-container">
+            <div class="form-container book-magazine-form">
+                <h3>Dodaj do systemu</h3>
+                <div class="switch-container">
+                    <button id="addBookBtn" class="active left-rounded">
+                        <span>Książka</span>
+                    </button>
+                    <button id="addMagazineBtn" class="inactive right-rounded">
+                        <span>Magazyn</span>
+                    </button>
+                </div>
+                <form id="addBookForm" class="form active" action="/addBook" method="post" onsubmit="return validateForm()">
+                    <div>
+                        <input type="text" id="bookTitle" name="bookTitle" placeholder="Tytuł Książki" required>
+                    </div>
+                    <div>
+                        <input type="text" id="bookAuthor" name="bookAuthor" placeholder="Autor Książki" required>
+                    </div>
+                    <div>
+                        <input type="text" id="bookPublisher" name="bookPublisher" placeholder="Wydawnictwo" required>
+                    </div>
+                    <div>
+                        <input type="text" id="bookISBN" name="bookISBN" placeholder="ISBN" pattern="\d+" required>
+                    </div>
+                    <div>
+                        <input type="text" id="bookYear" name="bookYear" placeholder="Rok wydania" pattern="\d{4}" required>
+                    </div>
+                    <div>
+                        <input type="text" id="bookPages" name="bookPages" placeholder="Ilość stron" required>
+                    </div>
+                    <button type="submit">Dodaj Książkę</button>
+                </form>
+                <form id="addMagazineForm" class="form" action="/addMagazine" method="post">
+                    <div>
+                        <input type="text" id="magazineTitle" name="magazineTitle" placeholder="Tytuł Magazynu" required>
+                    </div>
+                    <div>
+                        <input type="text" id="magazinePublisher" name="magazinePublisher" placeholder="Wydawnictwo" required>
+                    </div>
+                    <div>
+                        <input type="text" id="magazineLanguage" name="magazineLanguage" placeholder="Język" required>
+                    </div>
+                    <div>
+                        <input type="date" id="magazineDate" name="magazineDate" placeholder="Data Wydania" required>
+                    </div>
+                    <button type="submit">Dodaj Magazyn</button>
+                </form>
+            </div>
+            <div class="form-container-1 reader-form-container" style="background-color: #FFFFFF;">
+                <h3>Dodaj Czytelnika</h3>
+                <form id="addReaderForm" class="form active" action="/addReader" method="post">
+                    <div>
+                        <input type="text" id="firstName" name="firstName" placeholder="Imię" required>
+                    </div>
+                    <div>
+                        <input type="text" id="lastName" name="lastName" placeholder="Nazwisko" required>
+                    </div>
+                    <div>
+                        <input type="text" id="pesel" name="pesel" placeholder="PESEL" pattern="\d{11}" required>
+                    </div>
+                    <button type="submit">Dodaj Czytelnika</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <p>Biblioteka v2.7</p>
+    <p class="project-by">Project by Tironi</p>
+</footer>
+<script>
+    document.getElementById('addBookBtn').addEventListener('click', function() {
+        document.getElementById('addBookForm').classList.add('active');
+        document.getElementById('addMagazineForm').classList.remove('active');
+        this.classList.add('active');
+        this.classList.remove('inactive');
+        document.getElementById('addMagazineBtn').classList.add('inactive');
+        document.getElementById('addMagazineBtn').classList.remove('active');
+    });
+
+    document.getElementById('addMagazineBtn').addEventListener('click', function() {
+        document.getElementById('addMagazineForm').classList.add('active');
+        document.getElementById('addBookForm').classList.remove('active');
+        this.classList.add('active');
+        this.classList.remove('inactive');
+        document.getElementById('addBookBtn').classList.add('inactive');
+        document.getElementById('addBookBtn').classList.remove('active');
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const today = new Date().getDate() - 1;
+        document.getElementById('quote-of-the-day').innerText = quotes[today];
+    });
+</script>
+</body>
+</html>

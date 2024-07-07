@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="../static/css/item.css"/>
+</head>
+<body>
+<header>
+    <div class="left-section">
+        <img src="../static/images/logo.png" alt="Logo">
+        <div class="user-info">
+            <span>Witaj, User!</span>
+            <div id="quote-of-the-day" class="quote"></div>
+        </div>
+    </div>
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Szukaj...">
+        <select id="searchCategory">
+            <option value="books">Książki</option>
+            <option value="magazines">Magazyny</option>
+            <option value="readers">Czytelnicy</option>
+        </select>
+        <button onclick="search()">Szukaj</button>
+    </div>
+    <div class="user-menu">
+        <button onclick="window.location.href='index.html'">Strona Główna</button>
+        <button style="background-color: #FF4D4D;" onclick="window.location.href='delete.html'">Usuń z systemu</button>
+        <button onclick="window.location.href='index.html'" style="margin-right: 60px;">Wyloguj</button>
+    </div>
+</header>
+<div class="container">
+    <div class="content">
+        <div class="left-container">
+            <div class="magazine-info">
+                <h1>{{title}}</h1>
+                <p><strong>Wydawnictwo:</strong> {{publisher}}</p>
+                <p><strong>Język:</strong> {{language}}</p>
+                <p><strong>Data wydania:</strong> {{date}}</p>
+                <button onclick="deleteMagazine('{{title}}')" class="delete-button">Usuń magazyn</button>
+            </div>
+        </div>
+        <div class="right-container">
+            <div class="form-container book-magazine-form">
+                <h3>Historia przebiegu</h3>
+                <form id="commentForm">
+                    <div>
+                        <input type="date" id="borrowDate" name="borrowDate" placeholder="Data wypożyczenia" required>
+                    </div>
+                    <div>
+                        <input type="date" id="returnDate" name="returnDate" placeholder="Data zwrotu" required>
+                    </div>
+                    <div>
+                        <input type="text" id="peselSearch" name="peselSearch" placeholder="PESEL czytelnika" required oninput="searchReader(this.value)">
+                    </div>
+                    <div id="readerSuggestions"></div>
+                    <button type="submit" class="add-note-button">Dodaj adnotację</button>
+                </form>
+                <div id="comments">
+                    <!-- Komentarze będą tutaj -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <p>Biblioteka v2.7</p>
+    <p class="project-by">Project by Tironi</p>
+</footer>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const today = new Date().getDate() - 1;
+        document.getElementById('quote-of-the-day').innerText = quotes[today];
+    });
+
+    function search() {
+        const query = document.getElementById('searchInput').value;
+        const category = document.getElementById('searchCategory').value;
+        window.location.href = `/search-result.html?query=${query}&category=${category}`;
+    }
+
+    function searchReader(pesel) {
+        if (pesel.length >= 3) {
+            fetch(`/searchReader?pesel=${pesel}`)
+                .then(response => response.json())
+                .then(data => {
+                    const suggestions = data.results.map(reader => `<div class="suggestion" onclick="selectReader('${reader.pesel}', '${reader.name}', '${reader.surname}')">${reader.pesel} - ${reader.name} ${reader.surname}</div>`).join('');
+                    document.getElementById('readerSuggestions').innerHTML = suggestions;
+                });
+        } else {
+            document.getElementById('readerSuggestions').innerHTML = '';
+        }
+    }
+
+    function selectReader(pesel, name, surname) {
+        document.getElementById('peselSearch').value = `${pesel} - ${name} ${surname}`;
+        document.getElementById('readerSuggestions').innerHTML = '';
+    }
+
+    document.getElementById('commentForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const borrowDate = document.getElementById('borrowDate').value;
+        const returnDate = document.getElementById('returnDate').value;
+        const reader = document.getElementById('peselSearch').value;
+
+        const comment = `${reader} wypożyczył/a magazyn od ${borrowDate} do ${returnDate}`;
+
+        const commentsContainer = document.getElementById('comments');
+        const commentElement = document.createElement('p');
+        commentElement.textContent = comment;
+
+        commentsContainer.appendChild(commentElement);
+
+        document.getElementById('commentForm').reset();
+    });
+
+    function deleteMagazine(title) {
+        fetch('/deleteMagazine', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ title })
+        }).then(response => {
+            if (response.ok) {
+                alert('Magazyn został usunięty.');
+                window.location.href = 'welcome.html';
+            } else {
+                alert('Wystąpił błąd podczas usuwania magazynu.');
+            }
+        });
+    }
+</script>
+</body>
+</html>

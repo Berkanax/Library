@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{name}} {{surname}}</title>
+    <link rel="stylesheet" href="../static/css/item.css"/>
+</head>
+<body>
+<header>
+    <div class="left-section">
+        <img src="../static/images/logo.png" alt="Logo">
+        <div class="user-info">
+            <span>Witaj, User!</span>
+            <div id="quote-of-the-day" class="quote"></div>
+        </div>
+    </div>
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Szukaj...">
+        <select id="searchCategory">
+            <option value="books">Książki</option>
+            <option value="magazines">Magazyny</option>
+            <option value="readers">Czytelnicy</option>
+        </select>
+        <button onclick="search()">Szukaj</button>
+    </div>
+    <div class="user-menu">
+        <button onclick="window.location.href='index.html'">Strona Główna</button>
+        <button style="background-color: #FF4D4D;" onclick="window.location.href='delete.html'">Usuń z systemu</button>
+        <button onclick="window.location.href='index.html'" style="margin-right: 60px;">Wyloguj</button>
+    </div>
+</header>
+<div class="container">
+    <div class="reader-info">
+        <h1>{{name}} {{surname}}</h1>
+        <p><strong>PESEL:</strong> {{pesel}}</p>
+    </div>
+</div>
+<footer class="footer">
+    <p>Biblioteka v2.7</p>
+    <p class="project-by">Project by Tironi</p>
+</footer>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const today = new Date().getDate() - 1;
+        document.getElementById('quote-of-the-day').innerText = quotes[today];
+    });
+
+    function search() {
+        const query = document.getElementById('searchInput').value;
+        const category = document.getElementById('searchCategory').value;
+        window.location.href = `/search-result.html?query=${query}&category=${category}`;
+    }
+</script>
+</body>
+</html>

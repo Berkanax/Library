@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Biblioteka v2.7</title>
+    <link rel="stylesheet" href="../static/css/styles.css" /> <!-- Łączy plik CSS -->
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <img src="../static/images/logo.png" alt="Logo"> <!-- Dodaje logo -->
+        <div class="title">
+            <h2>Biblioteka v2.7</h2>
+            <p>Project by Tironi</p>
+        </div>
+    </div>
+    <p class="quote">"The only thing that you absolutely have to know, is the location of the library." - Albert Einstein</p> <!-- Inspirujący cytat -->
+    <div class="switch-container">
+        <button id="loginBtn" class="active"> <!-- Przycisk do logowania, domyślnie aktywny -->
+            <span>Zaloguj</span>
+        </button>
+        <button id="registerBtn" class="inactive"> <!-- Przycisk do rejestracji, domyślnie nieaktywny -->
+            <span>Rejestracja</span>
+        </button>
+    </div>
+    <form id="loginForm" class="active" action="/login" method="post"> <!-- Formularz logowania, domyślnie aktywny -->
+        <div>
+            <input type="text" id="login" name="login" placeholder="ID Administratora" required> <!-- Pole input z placeholderem "Login" -->
+        </div>
+        <div>
+            <input type="password" id="password" name="password" placeholder="Hasło" required> <!-- Pole input z placeholderem "Hasło" -->
+        </div>
+        <button type="submit">Zaloguj</button>
+    </form>
+    <form id="registerForm" action="/register" method="post"> <!-- Formularz rejestracji, domyślnie ukryty -->
+        <div>
+            <input type="text" id="newLogin" name="newLogin" placeholder="Twoje ID Administratora" required> <!-- Pole input z placeholderem "Nowy Login" -->
+        </div>
+        <div>
+            <input type="password" id="newPassword" name="newPassword" placeholder="Hasło" required> <!-- Pole input z placeholderem "Nowe Hasło" -->
+        </div>
+        <div>
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Powtórz Hasło" required> <!-- Pole input z placeholderem "Potwierdź Hasło" -->
+        </div>
+        <button type="submit">Zarejestruj Administratora</button>
+    </form>
+</div>
+<img src="../static/images/tlo.png" alt="Background Image" class="image-background"> <!-- Obraz tła poniżej kontenera -->
+<script>
+    // Dodaje event listener do przycisku "Zaloguj"
+    document.getElementById('loginBtn').addEventListener('click', function() {
+        // Ustawia formularz logowania jako aktywny
+        document.getElementById('loginForm').classList.add('active');
+        // Usuwa aktywność z formularza rejestracji
+        document.getElementById('registerForm').classList.remove('active');
+        // Ustawia przycisk "Zaloguj" jako aktywny
+        this.classList.add('active');
+        this.classList.remove('inactive');
+        // Ustawia przycisk "Rejestracja" jako nieaktywny
+        document.getElementById('registerBtn').classList.add('inactive');
+        document.getElementById('registerBtn').classList.remove('active');
+    });
+
+    // Dodaje event listener do przycisku "Rejestracja"
+    document.getElementById('registerBtn').addEventListener('click', function() {
+        // Ustawia formularz rejestracji jako aktywny
+        document.getElementById('registerForm').classList.add('active');
+        // Usuwa aktywność z formularza logowania
+        document.getElementById('loginForm').classList.remove('active');
+        // Ustawia przycisk "Rejestracja" jako aktywny
+        this.classList.add('active');
+        this.classList.remove('inactive');
+        // Ustawia przycisk "Zaloguj" jako nieaktywny
+        document.getElementById('loginBtn').classList.add('inactive');
+        document.getElementById('loginBtn').classList.remove('active');
+    });
+</script>
+</body>
+</html>
