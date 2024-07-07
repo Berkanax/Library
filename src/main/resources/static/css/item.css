@@ -89,6 +89,7 @@ header .user-menu {
     display: flex;
     align-items: center;
     margin-right: 60px;
+    gap: 20px;
 }
 
 header .user-menu button {
@@ -99,6 +100,10 @@ header .user-menu button {
     font-size: 14px;
     padding: 5px 10px;
     border-radius: 5px;
+}
+
+header .user-menu button:nth-child(2) {
+    background-color: #FF4D4D;
 }
 
 .container {

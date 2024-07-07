@@ -15,8 +15,8 @@
         </div>
     </div>
     <div class="search-bar">
-        <input type="text" placeholder="Szukaj...">
-        <button>Szukaj</button>
+        <input type="text" id="searchInput" placeholder="Szukaj...">
+        <button onclick="search()">Szukaj</button>
     </div>
     <div class="user-menu">
         <button onclick="window.location.href='index.html'">Strona Główna</button>
@@ -114,7 +114,7 @@
                     <button type="submit">Dodaj Magazyn</button>
                 </form>
             </div>
-            <div class="form-container-1 reader-form-container" style="background-color: #FFFFFF;">
+            <div class="form-container reader-form-container" style="background-color: #FFBD59;">
                 <h3>Dodaj Czytelnika</h3>
                 <form id="addReaderForm" class="form active" action="/addReader" method="post">
                     <div>
@@ -159,6 +159,11 @@
         const today = new Date().getDate() - 1;
         document.getElementById('quote-of-the-day').innerText = quotes[today];
     });
+
+    function search() {
+        const query = document.getElementById('searchInput').value;
+        window.location.href = `/search-result.html?query=${query}`;
+    }
 </script>
 </body>
 </html>

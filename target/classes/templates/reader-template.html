@@ -3,6 +3,7 @@
 <head>
     <title>{{name}} {{surname}}</title>
     <link rel="stylesheet" href="../static/css/item.css"/>
+    <script src="../static/js/sentencje.js" defer></script>
 </head>
 <body>
 <header>
@@ -14,7 +15,7 @@
         </div>
     </div>
     <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Szukaj...">
+        <input type="text" id="searchInput" placeholder="Szukaj..." value="{{query}}">
         <select id="searchCategory">
             <option value="books">Książki</option>
             <option value="magazines">Magazyny</option>
