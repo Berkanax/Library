@@ -2,74 +2,64 @@
 <html>
 <head>
     <title>Biblioteka v2.7</title>
-    <link rel="stylesheet" href="../static/css/styles.css" /> <!-- Łączy plik CSS -->
+    <link rel="stylesheet" href="../static/css/styles.css" />
 </head>
 <body>
 <div class="container">
     <div class="header">
-        <img src="../static/images/logo.png" alt="Logo"> <!-- Dodaje logo -->
+        <img src="../static/images/logo.png" alt="Logo">
         <div class="title">
             <h2>Biblioteka v2.7</h2>
             <p>Project by Tironi</p>
         </div>
     </div>
-    <p class="quote">"The only thing that you absolutely have to know, is the location of the library." - Albert Einstein</p> <!-- Inspirujący cytat -->
+    <p class="quote">"The only thing that you absolutely have to know, is the location of the library." - Albert Einstein</p>
     <div class="switch-container">
-        <button id="loginBtn" class="active"> <!-- Przycisk do logowania, domyślnie aktywny -->
+        <button id="loginBtn" class="active">
             <span>Zaloguj</span>
         </button>
-        <button id="registerBtn" class="inactive"> <!-- Przycisk do rejestracji, domyślnie nieaktywny -->
+        <button id="registerBtn" class="inactive">
             <span>Rejestracja</span>
         </button>
     </div>
-    <form id="loginForm" class="active" action="/login" method="post"> <!-- Formularz logowania, domyślnie aktywny -->
+    <form id="loginForm" class="active" action="/login" method="post">
         <div>
-            <input type="text" id="login" name="login" placeholder="ID Administratora" required> <!-- Pole input z placeholderem "Login" -->
+            <input type="text" id="login" name="username" placeholder="ID Administratora" required>
         </div>
         <div>
-            <input type="password" id="password" name="password" placeholder="Hasło" required> <!-- Pole input z placeholderem "Hasło" -->
+            <input type="password" id="password" name="password" placeholder="Hasło" required>
         </div>
         <button type="submit">Zaloguj</button>
     </form>
-    <form id="registerForm" action="/register" method="post"> <!-- Formularz rejestracji, domyślnie ukryty -->
+    <form id="registerForm" action="/register" method="post">
         <div>
-            <input type="text" id="newLogin" name="newLogin" placeholder="Twoje ID Administratora" required> <!-- Pole input z placeholderem "Nowy Login" -->
+            <input type="text" id="newLogin" name="newLogin" placeholder="Twoje ID Administratora" required>
         </div>
         <div>
-            <input type="password" id="newPassword" name="newPassword" placeholder="Hasło" required> <!-- Pole input z placeholderem "Nowe Hasło" -->
+            <input type="password" id="newPassword" name="newPassword" placeholder="Hasło" required>
         </div>
         <div>
-            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Powtórz Hasło" required> <!-- Pole input z placeholderem "Potwierdź Hasło" -->
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Powtórz Hasło" required>
         </div>
         <button type="submit">Zarejestruj Administratora</button>
     </form>
 </div>
-<img src="../static/images/tlo.png" alt="Background Image" class="image-background"> <!-- Obraz tła poniżej kontenera -->
+<img src="../static/images/tlo.png" alt="Background Image" class="image-background">
 <script>
-    // Dodaje event listener do przycisku "Zaloguj"
     document.getElementById('loginBtn').addEventListener('click', function() {
-        // Ustawia formularz logowania jako aktywny
         document.getElementById('loginForm').classList.add('active');
-        // Usuwa aktywność z formularza rejestracji
         document.getElementById('registerForm').classList.remove('active');
-        // Ustawia przycisk "Zaloguj" jako aktywny
         this.classList.add('active');
         this.classList.remove('inactive');
-        // Ustawia przycisk "Rejestracja" jako nieaktywny
         document.getElementById('registerBtn').classList.add('inactive');
         document.getElementById('registerBtn').classList.remove('active');
     });
 
-    // Dodaje event listener do przycisku "Rejestracja"
     document.getElementById('registerBtn').addEventListener('click', function() {
-        // Ustawia formularz rejestracji jako aktywny
         document.getElementById('registerForm').classList.add('active');
-        // Usuwa aktywność z formularza logowania
         document.getElementById('loginForm').classList.remove('active');
-        // Ustawia przycisk "Rejestracja" jako aktywny
         this.classList.add('active');
         this.classList.remove('inactive');
-        // Ustawia przycisk "Zaloguj" jako nieaktywny
         document.getElementById('loginBtn').classList.add('inactive');
         document.getElementById('loginBtn').classList.remove('active');
     });

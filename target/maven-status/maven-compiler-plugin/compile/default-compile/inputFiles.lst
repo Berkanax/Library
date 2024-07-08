@@ -1,13 +1,16 @@
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\config\SecurityConfig.java
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\repository\UserRepository.java
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\service\UserService.java
+A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\repository\MagazineRepository.java
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\io\DataReader.java
+A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\controller\MagazineController.java
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\io\file\CsvFileManager.java
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\service\BookService.java
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\exception\InvalidDataException.java
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\exception\NoSuchOptionException.java
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\io\file\FileType.java
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\app\BibliotekaApplication.java
+A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\controller\BorrowController.java
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\io\file\FileManager.java
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\service\CustomUserDetailsService.java
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\io\file\FileManagerBuilder.java
@@ -16,6 +19,7 @@ A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\model\Library.java
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\exception\DataExportException.java
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\model\Publication.java
+A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\service\BorrowService.java
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\controller\BookController.java
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\model\LibraryUser.java
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\controller\RegisterController.java
@@ -33,5 +37,6 @@ A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\model\CsvConvertible.java
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\app\LibraryApp.java
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\controller\LibraryControl.java
+A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\controller\SearchController.java
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\io\ConsolePrinter.java
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\exception\UserAlreadyExistsException.java
