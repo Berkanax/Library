@@ -1,5 +1,6 @@
 package pl.sda.library.model;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class Book extends Publication {
@@ -8,6 +9,10 @@ public class Book extends Publication {
     private String author;
     private int pages;
     private String isbn;
+    private String borrowerPesel;
+    private LocalDate borrowDate;
+    private LocalDate returnDate;
+    private String status;
 
     // Konstruktory
     public Book(String title, String author, int year, int pages, String publisher,
@@ -41,6 +46,38 @@ public class Book extends Publication {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public String getBorrowerPesel() {
+        return borrowerPesel;
+    }
+
+    public void setBorrowerPesel(String borrowerPesel) {
+        this.borrowerPesel = borrowerPesel;
+    }
+
+    public LocalDate getBorrowDate() {
+        return borrowDate;
+    }
+
+    public void setBorrowDate(LocalDate borrowDate) {
+        this.borrowDate = borrowDate;
+    }
+
+    public LocalDate getReturnDate() {
+        return returnDate;
+    }
+
+    public void setReturnDate(LocalDate returnDate) {
+        this.returnDate = returnDate;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override

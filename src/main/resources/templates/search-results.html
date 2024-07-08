@@ -1,46 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Wyniki wyszukiwania - Biblioteka</title>
-    <link rel="stylesheet" href="../static/css/search-result.css"/>
-    <script src="../static/js/sentencje.js" defer></script>
+    <title>Search Results - Biblioteka</title>
+    <link rel="stylesheet" href="../static/css/welcome.css"/>
 </head>
 <body>
 <header>
     <div class="left-section">
         <img src="../static/images/logo.png" alt="Logo">
         <div class="user-info">
-            <span>Witaj, User!</span>
-            <div id="quote-of-the-day" class="quote"></div>
+            <span>Wyniki wyszukiwania</span>
         </div>
     </div>
     <div class="search-bar">
-        <input type="text" placeholder="{{query}}">
-        <select>
-            <option value="books">Książki</option>
-            <option value="magazines">Magazyny</option>
-            <option value="readers">Czytelnicy</option>
-        </select>
-        <button>Szukaj</button>
+        <input type="text" id="searchInput" placeholder="Szukaj...">
+        <button onclick="search()">Szukaj</button>
     </div>
     <div class="user-menu">
-        <button onclick="window.location.href='index.html'">Strona Główna</button>
+        <button onclick="window.location.href='/welcome'">Strona Główna</button>
         <button style="background-color: #FF4D4D;" onclick="window.location.href='delete.html'">Usuń z systemu</button>
         <button onclick="window.location.href='index.html'" style="margin-right: 60px;">Wyloguj</button>
     </div>
 </header>
 <div class="container">
     <div class="content">
-        <div class="results">
-            <h3>Wyniki wyszukiwania dla: "{{query}}"</h3>
-            {{#each results}}
-            <div class="result-item">
-                <a href="/{{type}}/{{identifier}}">
-                    <img src="../static/images/{{type}}.png" alt="{{title}}">
-                    <p>{{title}}</p>
-                </a>
+        <div class="left-container">
+            <h3>Wyniki wyszukiwania:</h3>
+            <div class="item-list">
+                <div th:each="book : ${books}" class="item">
+                    <img src="../static/images/ksiazka.png" alt="Książka">
+                    <p th:text="${book.title}">Tytuł Książki</p>
+                    <p th:text="${book.author}">Autor</p>
+                </div>
             </div>
-            {{/each}}
         </div>
     </div>
 </div>
@@ -49,10 +41,10 @@
     <p class="project-by">Project by Tironi</p>
 </footer>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const today = new Date().getDate() - 1;
-        document.getElementById('quote-of-the-day').innerText = quotes[today];
-    });
+    function search() {
+        const query = document.getElementById('searchInput').value;
+        window.location.href = `/search?query=${query}`;
+    }
 </script>
 </body>
 </html>

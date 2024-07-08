@@ -1,5 +1,6 @@
 package pl.sda.library.model;
 
+import java.time.LocalDate;
 import java.time.MonthDay;
 import java.util.Objects;
 
@@ -8,6 +9,10 @@ public class Magazine extends Publication {
 
     private MonthDay monthDay;
     private String language;
+    private String borrowerPesel;
+    private LocalDate borrowDate;
+    private LocalDate returnDate;
+    private String status;
 
     public Magazine(String title, String publisher, String language, int year, int month, int day) {
         super(title, publisher, year);
@@ -26,8 +31,41 @@ public class Magazine extends Publication {
     public String getLanguage() {
         return language;
     }
+
     public void setLanguage(String language) {
         this.language = language;
+    }
+
+    public String getBorrowerPesel() {
+        return borrowerPesel;
+    }
+
+    public void setBorrowerPesel(String borrowerPesel) {
+        this.borrowerPesel = borrowerPesel;
+    }
+
+    public LocalDate getBorrowDate() {
+        return borrowDate;
+    }
+
+    public void setBorrowDate(LocalDate borrowDate) {
+        this.borrowDate = borrowDate;
+    }
+
+    public LocalDate getReturnDate() {
+        return returnDate;
+    }
+
+    public void setReturnDate(LocalDate returnDate) {
+        this.returnDate = returnDate;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override
