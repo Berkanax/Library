@@ -1,62 +1,50 @@
-package pl.sda.library.config;
+package pl.sda.library.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import pl.sda.library.model.AppUser;
-import pl.sda.library.repository.AppUserRepository;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
-    private final AppUserRepository appUserRepository;
-
-    public SecurityConfig(AppUserRepository appUserRepository) {
-        this.appUserRepository = appUserRepository;
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/index.html", "/register").permitAll()
+                .antMatchers("/static/**", "/h2-console/**", "/register", "/welcome").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/index.html")
-                .loginProcessingUrl("/login")
-                .defaultSuccessUrl("/welcome.html", true)
-                .permitAll()
+                .loginPage("/login").permitAll()
+                .defaultSuccessUrl("/welcome", true)
                 .and()
                 .logout()
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/index.html")
                 .permitAll();
+
+        // Allow access to H2 console
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
     }
 
     @Bean
     @Override
     public UserDetailsService userDetailsService() {
-        return username -> {
-            AppUser user = appUserRepository.findByUsername(username);
-            if (user == null) {
-                throw new UsernameNotFoundException("User not found");
-            }
-            return org.springframework.security.core.userdetails.User
-                    .withUsername(user.getUsername())
-                    .password(user.getPassword())
-                    .authorities("USER")
-                    .build();
-        };
+        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+        manager.createUser(User.withDefaultPasswordEncoder()
+                .username("admin")
+                .password("admin")
+                .roles("USER")
+                .build());
+        return manager;
+    }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/static/**");
     }
 }

@@ -21,10 +21,12 @@ pl\sda\library\io\ConsolePrinter.class
 pl\sda\library\service\PasswordGenerator.class
 pl\sda\library\exception\InvalidDataException.class
 pl\sda\library\io\file\FileManager.class
+pl\sda\library\repository\AppUserRepository.class
 pl\sda\library\controller\LibraryControl.class
 pl\sda\library\io\file\SerializableFileManager.class
 pl\sda\library\io\file\FileType.class
 pl\sda\library\exception\DataExportException.class
+pl\sda\library\config\WebConfig.class
 pl\sda\library\controller\SearchController.class
 pl\sda\library\exception\UserAlreadyExistsException.class
 pl\sda\library\model\User.class
@@ -34,6 +36,7 @@ pl\sda\library\model\Library.class
 pl\sda\library\model\Publication.class
 pl\sda\library\service\BorrowService.class
 pl\sda\library\app\BibliotekaApplication.class
+pl\sda\library\config\WebSecurityConfig.class
 pl\sda\library\model\LibraryUser.class
 pl\sda\library\controller\UserController.class
 pl\sda\library\exception\DataImportException.class

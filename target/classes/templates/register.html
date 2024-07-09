@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rejestracja</title>
+    <link rel="stylesheet" href="../static/css/styles.css" />
+</head>
+<body>
+<div class="container">
+    <h2>Rejestracja Administratora</h2>
+    <form action="/register" method="post">
+        <div>
+            <input type="text" id="newLogin" name="newLogin" placeholder="Twoje ID Administratora" required>
+        </div>
+        <div>
+            <input type="password" id="newPassword" name="newPassword" placeholder="Hasło" required>
+        </div>
+        <div>
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Powtórz Hasło" required>
+        </div>
+        <button type="submit">Zarejestruj Administratora</button>
+    </form>
+</div>
+</body>
+</html>

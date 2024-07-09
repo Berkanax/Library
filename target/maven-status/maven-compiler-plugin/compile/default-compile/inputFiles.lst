@@ -15,6 +15,7 @@ A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\service\CustomUserDetailsService.java
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\io\file\FileManagerBuilder.java
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\model\User.java
+A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\config\WebSecurityConfig.java
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\exception\NoSuchFileTypeException.java
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\model\Library.java
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\exception\DataExportException.java
@@ -24,6 +25,7 @@ A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\model\LibraryUser.java
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\controller\RegisterController.java
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\model\Magazine.java
+A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\config\WebConfig.java
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\model\Book.java
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\controller\HomeController.java
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\exception\PublicationAlreadyExistsException.java
@@ -32,6 +34,7 @@ A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\exception\DataImportException.java
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\controller\UserController.java
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\model\AppUser.java
+A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\repository\AppUserRepository.java
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\controller\LoginController.java
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\io\file\SerializableFileManager.java
 A:\02. CodeHub\03. Developer Java\JavaStart\Projekt Końcowy\01. Biblioteka\src\main\java\pl\sda\library\model\CsvConvertible.java
