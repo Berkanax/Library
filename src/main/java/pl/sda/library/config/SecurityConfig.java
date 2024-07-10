@@ -16,12 +16,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/static/**", "/h2-console/**", "/register", "/welcome").permitAll()
+                .antMatchers("/static/**", "/h2-console/**", "/user/register", "/user/login", "/register", "/index.html").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login").permitAll()
-                .defaultSuccessUrl("/welcome", true)
+                .loginPage("/index.html").permitAll()
+                .defaultSuccessUrl("/welcome.html", true)
                 .and()
                 .logout()
                 .permitAll();

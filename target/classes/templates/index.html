@@ -15,14 +15,14 @@
     </div>
     <p class="quote">"The only thing that you absolutely have to know, is the location of the library." - Albert Einstein</p>
     <div class="switch-container">
-        <button id="loginBtn" class="active">
+        <button id="loginBtn" class="active" onclick="showLogin()">
             <span>Zaloguj</span>
         </button>
-        <button id="registerBtn" class="inactive">
+        <button id="registerBtn" class="inactive" onclick="showRegister()">
             <span>Rejestracja</span>
         </button>
     </div>
-    <form id="loginForm" class="active" action="/welcome" method="post">
+    <form id="loginForm" class="active" action="/user/login" method="post">
         <div>
             <input type="text" id="login" name="username" placeholder="ID Administratora" required>
         </div>
@@ -31,7 +31,7 @@
         </div>
         <button type="submit">Zaloguj</button>
     </form>
-    <form id="registerForm" action="/welcome" method="post">
+    <form id="registerForm" action="/user/register" method="post" style="display: none;">
         <div>
             <input type="text" id="newLogin" name="newLogin" placeholder="Twoje ID Administratora" required>
         </div>
@@ -46,24 +46,22 @@
 </div>
 <img src="../static/images/tlo.png" alt="Background Image" class="image-background">
 <script>
-    document.getElementById('loginBtn').addEventListener('click', function() {
-        document.getElementById('loginForm').classList.add('active');
-        document.getElementById('registerForm').classList.remove('active');
-        this.classList.add('active');
-        this.classList.remove('inactive');
-        document.getElementById('registerBtn').classList.add('inactive');
+    function showLogin() {
+        document.getElementById('loginForm').style.display = 'block';
+        document.getElementById('registerForm').style.display = 'none';
+        document.getElementById('loginBtn').classList.add('active');
         document.getElementById('registerBtn').classList.remove('active');
-    });
+    }
 
-    document.getElementById('registerBtn').addEventListener('click', function() {
-        document.getElementById('registerForm').classList.add('active');
-        document.getElementById('loginForm').classList.remove('active');
-        this.classList.add('active');
-        this.classList.remove('inactive');
-        document.getElementById('loginBtn').classList.add('inactive');
+    function showRegister() {
+        document.getElementById('loginForm').style.display = 'none';
+        document.getElementById('registerForm').style.display = 'block';
         document.getElementById('loginBtn').classList.remove('active');
-    });
+        document.getElementById('registerBtn').classList.add('active');
+    }
+
+    document.getElementById('loginBtn').addEventListener('click', showLogin);
+    document.getElementById('registerBtn').addEventListener('click', showRegister);
 </script>
-<script src="/js/script.js"></script>
 </body>
 </html>

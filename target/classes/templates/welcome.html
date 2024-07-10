@@ -1,55 +1,147 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Welcome</title>
-    <link rel="stylesheet" href="../static/css/styles.css" />
+    <title>Welcome - Biblioteka</title>
+    <link rel="stylesheet" href="../static/css/welcome.css"/>
+    <script src="../static/js/sentencje.js" defer></script>
 </head>
 <body>
-<div class="container">
-    <div class="header">
+<header>
+    <div class="left-section">
         <img src="../static/images/logo.png" alt="Logo">
-        <div class="title">
-            <h2>Biblioteka v2.7</h2>
-            <p>Project by Tironi</p>
+        <div class="user-info">
+            <span>Witaj, <span th:text="${currentUser.username}">User</span>!</span>
+            <div id="quote-of-the-day" class="quote"></div>
         </div>
     </div>
-    <p class="quote">"The only thing that you absolutely have to know, is the location of the library." - Albert Einstein</p>
-    <div class="welcome-message">
-        <h2>Witaj, <span id="adminId"></span>!</h2>
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Szukaj...">
+        <button onclick="search()">Szukaj</button>
     </div>
-    <div class="options">
-        <h3>Opcje Administratora</h3>
-        <ul>
-            <li><a href="/addReader">Dodaj Czytelnika</a></li>
-            <li><a href="/addBook">Dodaj Książkę</a></li>
-            <li><a href="/addMagazine">Dodaj Magazyn</a></li>
-        </ul>
+    <div class="user-menu">
+        <button onclick="window.location.href='index.html'">Strona Główna</button>
+        <button style="background-color: #FF4D4D;" onclick="window.location.href='delete.html'">Usuń z systemu</button>
+        <button onclick="window.location.href='index.html'" style="margin-right: 60px;">Wyloguj</button>
     </div>
-    <div class="recent-books">
-        <h3>Ostatnio dodane Książki:</h3>
-        <ul id="recentBooks">
-            <!-- Lista ostatnio dodanych książek -->
-        </ul>
+</header>
+<div class="container">
+    <div class="content">
+        <div class="left-container">
+            <h3>Ostatnio dodane Książki:</h3>
+            <div class="item-list">
+                <!-- Wyświetlanie ostatnio dodanych książek -->
+                <div th:each="book : ${books}" class="item">
+                    <img src="../static/images/ksiazka.png" alt="Książka">
+                    <p th:text="${book.title}">Tytuł Książki</p>
+                </div>
+            </div>
+            <h3 style="margin-top: 20px;">Ostatnio dodane Magazyny:</h3>
+            <div class="item-list">
+                <!-- Wyświetlanie ostatnio dodanych magazynów -->
+                <div th:each="magazine : ${magazines}" class="item">
+                    <img src="../static/images/magazyn.png" alt="Magazyn">
+                    <p th:text="${magazine.title}">Tytuł Magazynu</p>
+                </div>
+            </div>
+        </div>
+        <div class="right-container">
+            <div class="form-container book-magazine-form">
+                <h3>Dodaj do systemu</h3>
+                <div class="switch-container">
+                    <button id="addBookBtn" class="active left-rounded">
+                        <span>Książka</span>
+                    </button>
+                    <button id="addMagazineBtn" class="inactive right-rounded">
+                        <span>Magazyn</span>
+                    </button>
+                </div>
+                <form id="addBookForm" class="form active" action="/addBook" method="post" onsubmit="return validateForm()">
+                    <div>
+                        <input type="text" id="bookTitle" name="bookTitle" placeholder="Tytuł Książki" required>
+                    </div>
+                    <div>
+                        <input type="text" id="bookAuthor" name="bookAuthor" placeholder="Autor Książki" required>
+                    </div>
+                    <div>
+                        <input type="text" id="bookPublisher" name="bookPublisher" placeholder="Wydawnictwo" required>
+                    </div>
+                    <div>
+                        <input type="text" id="bookISBN" name="bookISBN" placeholder="ISBN" pattern="\d+" required>
+                    </div>
+                    <div>
+                        <input type="text" id="bookYear" name="bookYear" placeholder="Rok wydania" pattern="\d{4}" required>
+                    </div>
+                    <div>
+                        <input type="text" id="bookPages" name="bookPages" placeholder="Ilość stron" required>
+                    </div>
+                    <button type="submit">Dodaj Książkę</button>
+                </form>
+                <form id="addMagazineForm" class="form" action="/addMagazine" method="post">
+                    <div>
+                        <input type="text" id="magazineTitle" name="magazineTitle" placeholder="Tytuł Magazynu" required>
+                    </div>
+                    <div>
+                        <input type="text" id="magazinePublisher" name="magazinePublisher" placeholder="Wydawnictwo" required>
+                    </div>
+                    <div>
+                        <input type="text" id="magazineLanguage" name="magazineLanguage" placeholder="Język" required>
+                    </div>
+                    <div>
+                        <input type="date" id="magazineDate" name="magazineDate" placeholder="Data Wydania" required>
+                    </div>
+                    <button type="submit">Dodaj Magazyn</button>
+                </form>
+            </div>
+            <div class="form-container-1 reader-form-container" style="background-color: #FFBD59;">
+                <h3>Dodaj Czytelnika</h3>
+                <form id="addReaderForm" class="form active" action="/addReader" method="post">
+                    <div>
+                        <input type="text" id="firstName" name="firstName" placeholder="Imię" required>
+                    </div>
+                    <div>
+                        <input type="text" id="lastName" name="lastName" placeholder="Nazwisko" required>
+                    </div>
+                    <div>
+                        <input type="text" id="pesel" name="pesel" placeholder="PESEL" pattern="\d{11}" required>
+                    </div>
+                    <button type="submit">Dodaj Czytelnika</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
-<img src="../static/images/tlo.png" alt="Background Image" class="image-background">
+<footer class="footer">
+    <p>Biblioteka v2.7</p>
+    <p class="project-by">Project by Tironi</p>
+</footer>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const adminId = urlParams.get('adminId');
-        document.getElementById('adminId').textContent = adminId;
-
-        fetch('/api/recentBooks')
-            .then(response => response.json())
-            .then(data => {
-                const recentBooksList = document.getElementById('recentBooks');
-                data.forEach(book => {
-                    const listItem = document.createElement('li');
-                    listItem.textContent = book.title;
-                    recentBooksList.appendChild(listItem);
-                });
-            });
+    document.getElementById('addBookBtn').addEventListener('click', function() {
+        document.getElementById('addBookForm').classList.add('active');
+        document.getElementById('addMagazineForm').classList.remove('active');
+        this.classList.add('active');
+        this.classList.remove('inactive');
+        document.getElementById('addMagazineBtn').classList.add('inactive');
+        document.getElementById('addMagazineBtn').classList.remove('active');
     });
+
+    document.getElementById('addMagazineBtn').addEventListener('click', function() {
+        document.getElementById('addMagazineForm').classList.add('active');
+        document.getElementById('addBookForm').classList.remove('active');
+        this.classList.add('active');
+        this.classList.remove('inactive');
+        document.getElementById('addBookBtn').classList.add('inactive');
+        document.getElementById('addBookBtn').classList.remove('active');
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const today = new Date().getDate() - 1;
+        document.getElementById('quote-of-the-day').innerText = quotes[today];
+    });
+
+    function search() {
+        const query = document.getElementById('searchInput').value;
+        window.location.href = `/search-result.html?query=${query}`;
+    }
 </script>
 </body>
 </html>

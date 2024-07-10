@@ -7,12 +7,12 @@ import pl.sda.library.model.AppUser;
 import pl.sda.library.repository.AppUserRepository;
 
 @Service
-public class UserService {
+public class AppUserService {
     private final AppUserRepository appUserRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserService(AppUserRepository appUserRepository, PasswordEncoder passwordEncoder) {
+    public AppUserService(AppUserRepository appUserRepository, PasswordEncoder passwordEncoder) {
         this.appUserRepository = appUserRepository;
         this.passwordEncoder = passwordEncoder;
     }
@@ -22,5 +22,13 @@ public class UserService {
         user.setUsername(username);
         user.setPassword(passwordEncoder.encode(password));
         return appUserRepository.save(user);
+    }
+
+    public AppUser loginUser(String username, String password) {
+        AppUser user = appUserRepository.findByUsername(username);
+        if (user != null && passwordEncoder.matches(password, user.getPassword())) {
+            return user;
+        }
+        return null;
     }
 }

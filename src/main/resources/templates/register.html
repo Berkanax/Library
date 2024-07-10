@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Rejestracja</title>
+    <title>Rejestracja - Biblioteka</title>
     <link rel="stylesheet" href="../static/css/styles.css" />
 </head>
 <body>
 <div class="container">
-    <h2>Rejestracja Administratora</h2>
-    <form action="/register" method="post">
+    <div class="header">
+        <img src="../static/images/logo.png" alt="Logo">
+        <div class="title">
+            <h2>Rejestracja - Biblioteka</h2>
+        </div>
+    </div>
+    <form action="/user/register" method="post">
         <div>
             <input type="text" id="newLogin" name="newLogin" placeholder="Twoje ID Administratora" required>
         </div>
